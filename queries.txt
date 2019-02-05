@@ -9,3 +9,25 @@
 SELECT * FROM contracts 
  WHERE date_start <= '2018-10-11' 
  OR date_end >='2014-03-05'
+
+4. 
+ SELECT * FROM contracts
+ WHERE id IN (
+   SELECT DISTINCT contract_id FROM contracts_addresses
+   JOIN contracts
+   ON contract_id=contracts.id   
+ );
+
+ 5.
+ SELECT * FROM addresses
+WHERE id in 
+(SELECT address_id FROM contracts_addresses
+WHERE date_start IN(
+SELECT MAX(date_start)
+FROM contracts_addresses
+GROUP BY contract_id))
+
+6.
+SELECT contract_id, COUNT(address_id) AS count
+FROM contracts_addresses
+GROUP BY contract_id
