@@ -1,3 +1,8 @@
 1.
  SELECT * FROM contracts 
  WHERE is_vip=true;
+
+3.
+SELECT * FROM contracts 
+ WHERE date_start <= '2018-10-11' 
+ OR date_end >='2014-03-05'
